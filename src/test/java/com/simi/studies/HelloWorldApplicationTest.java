@@ -7,7 +7,11 @@ public class HelloWorldApplicationTest {
 
   @Test
   public void applicationStartup() {
-    Assertions.assertDoesNotThrow(() -> HelloWorldApplication.main(null));
+    final var runtimeException = Assertions.assertThrows(RuntimeException.class,
+        () -> HelloWorldApplication.main(null));
+    final var expectedErrorMessage =
+        "Method void com.simi.studies.HelloWorldApplication.main(String[]) with @ExceptionTest";
+    Assertions.assertEquals(expectedErrorMessage, runtimeException.getMessage());
   }
 
 }
